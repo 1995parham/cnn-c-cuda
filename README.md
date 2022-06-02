@@ -1,4 +1,5 @@
 # CNN implementation in C + CUDA :dog:
+##### based on [cnn-c-cuda](https://github.com/lucasromanosantos/cnn-c-cuda)
 
 Implementation in progress of a Convolutional Neural Network in C and CUDA
 Handwritten digit recognition using [MNIST dataset](http://yann.lecun.com/exdb/mnist/)
