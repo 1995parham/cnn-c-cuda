@@ -14,7 +14,7 @@ Relu_Layer init_relu_layer(int width, int height, int depth) {
   Relu_Layer relu_layer = malloc(sizeof(struct Relu_Layer));
 
   relu_layer->grads_in = initialize_tensor(width, height, depth);
-  relu_layer->in = initialize_tensor(width, height, depth);
+  relu_layer->in = NULL;
   relu_layer->out = initialize_tensor(width, height, depth);
 
   return relu_layer;

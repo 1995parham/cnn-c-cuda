@@ -26,4 +26,7 @@ void activate_relu_gpu(float *in, float *out) {
   cudaDeviceSynchronize();
 
   cudaMemcpy(out, device_out, sizeof(float) * 8 * 24 * 24, cudaMemcpyDeviceToHost);
+
+  cudaFree(device_in);
+  cudaFree(device_out);
 }

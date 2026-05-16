@@ -43,4 +43,7 @@ void activate_pooling_gpu(float *in, float *out) {
   cudaDeviceSynchronize();
 
   cudaMemcpy(out, device_out, sizeof(float) * 8 * 12 * 12, cudaMemcpyDeviceToHost);
+
+  cudaFree(device_in);
+  cudaFree(device_out);
 }

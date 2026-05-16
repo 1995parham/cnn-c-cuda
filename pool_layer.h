@@ -24,8 +24,10 @@ Pool_Layer init_pool_layer(int width, int height, int depth) {
   pool_layer->stride = stride;
 
   pool_layer->grads_in = initialize_tensor(width, height, depth);
-  pool_layer->in = initialize_tensor(width, height, depth);
+  pool_layer->in = NULL;
   pool_layer->out = initialize_tensor((width - size_of_filter) / stride + 1, (height - size_of_filter) / stride + 1, depth);
+
+  return pool_layer;
 }
 
 void activate_pooling(Pool_Layer layer, Tensor data) {

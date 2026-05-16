@@ -12,8 +12,8 @@ float update_weight(float w, float grad, float old_grad, float multp) {
   return w2;
 }
 
-float update_gradient(float grad, float *old_grad) {
-  return (grad + *old_grad * MOMENTUM);
+void update_gradient(float grad, float *old_grad) {
+  *old_grad = grad + *old_grad * MOMENTUM;
 }
 
 #endif

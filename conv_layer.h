@@ -37,6 +37,8 @@ Conv_Layer init_convolutional_layer(int in_size) {
 
   conv_layer->grads_in = initialize_tensor(in_size, in_size, DEPTH);
   conv_layer->in = initialize_tensor(in_size, in_size, DEPTH);
+  free(conv_layer->in->data);
+  conv_layer->in->data = NULL;
 
   int out_size = (in_size - size_of_filter) / conv_layer->stride + 1;
   conv_layer->out = initialize_tensor(out_size, out_size, number_of_filters);
@@ -157,7 +159,7 @@ void calc_conv_grads(Conv_Layer layer, Tensor grad_next_layer) {
           for (int j = r->min_y; j <= r->max_y; j += 1) {
             int miny = j * layer->stride;
             for (int k = r->min_z; k <= r->max_z; k += 1) {
-              int w_applied = layer->filters[k]->data[idx(layer->filters[k], x - minx, y - miny, z)]; // !!!!!!! int?
+              float w_applied = layer->filters[k]->data[idx(layer->filters[k], x - minx, y - miny, z)];
               sum_error += w_applied * grad_next_layer->data[idx(grad_next_layer, i, j, k)];
               float a = layer->in->data[idx(layer->in, x, y, z)];
               float b = grad_next_layer->data[idx(grad_next_layer, i, j, k)];
@@ -180,7 +182,7 @@ void fix_conv_weights(Conv_Layer layer) {
           float *grad = &layer->filter_grads[a]->data[idx(layer->filter_grads[a], i, j, z)];
           float *old_grad = &layer->filter_old_grads[a]->data[idx(layer->filter_old_grads[a], i, j, z)];
           *w = update_weight(*w, *grad, *old_grad, 1);
-          *old_grad = update_gradient(*grad, old_grad);
+          update_gradient(*grad, old_grad);
         }
 }
 

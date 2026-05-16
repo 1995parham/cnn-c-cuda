@@ -42,4 +42,8 @@ void activate_convolutional_gpu(float *in, float *weights, float *out) {
   cudaDeviceSynchronize();
 
   cudaMemcpy(out, device_out, sizeof(float) * 8 * 24 * 24, cudaMemcpyDeviceToHost);
+
+  cudaFree(device_in);
+  cudaFree(device_filters);
+  cudaFree(device_out);
 }

@@ -21,7 +21,7 @@ FC_Layer init_fc_layer(int width, int height, int depth) {
   FC_Layer fc_layer = malloc(sizeof(struct FC_Layer));
 
   fc_layer->grads_in = initialize_tensor(width, height, depth);
-  fc_layer->in = initialize_tensor(width, height, depth);
+  fc_layer->in = NULL;
   fc_layer->out = initialize_tensor(OUT_SIZE, 1, 1);
   fc_layer->input = malloc(sizeof(float) * OUT_SIZE);
   fc_layer->weights = initialize_tensor(width * height * depth, OUT_SIZE, 1);

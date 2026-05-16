@@ -38,4 +38,8 @@ void activate_fc_gpu(float *in, float *weights, float *out) {
   cudaDeviceSynchronize();
 
   cudaMemcpy(out, device_out, sizeof(float) * 10, cudaMemcpyDeviceToHost);
+
+  cudaFree(device_in);
+  cudaFree(device_weights);
+  cudaFree(device_out);
 }

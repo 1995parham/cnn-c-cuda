@@ -178,9 +178,9 @@ void save_model() {
   save_tensor(fc_4->weights, "fc_4", "weights");
 
   FILE *file_4 = fopen("fc_4_params", "w");
-  fwrite(&fc_4->input, sizeof(float), OUT_SIZE, file_4);
-  fwrite(&fc_4->gradients, sizeof(float), OUT_SIZE, file_4);
-  fwrite(&fc_4->old_gradients, sizeof(float), OUT_SIZE, file_4);
+  fwrite(fc_4->input, sizeof(float), OUT_SIZE, file_4);
+  fwrite(fc_4->gradients, sizeof(float), OUT_SIZE, file_4);
+  fwrite(fc_4->old_gradients, sizeof(float), OUT_SIZE, file_4);
   fclose(file_4);
 }
 
@@ -247,9 +247,9 @@ void load_model() {
   fc_4->input = malloc(sizeof(float) * OUT_SIZE);
   fc_4->gradients = malloc(sizeof(float) * OUT_SIZE);
   fc_4->old_gradients = malloc(sizeof(float) * OUT_SIZE);
-  fread(&fc_4->input, sizeof(float), OUT_SIZE, file_4);
-  fread(&fc_4->gradients, sizeof(float), OUT_SIZE, file_4);
-  fread(&fc_4->old_gradients, sizeof(float), OUT_SIZE, file_4);
+  fread(fc_4->input, sizeof(float), OUT_SIZE, file_4);
+  fread(fc_4->gradients, sizeof(float), OUT_SIZE, file_4);
+  fread(fc_4->old_gradients, sizeof(float), OUT_SIZE, file_4);
   fclose(file_4);
 }
 
